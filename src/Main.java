@@ -1,247 +1,176 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        // Задача 1
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Введите целове число:");
-        int num = scan.nextInt();
-        if (num % 2 == 0) System.out.println("Число чётное");
-        else System.out.println("Число нечётное");
-        System.out.println();
-
-        // Задача 2
-        System.out.println("Введите первое целове число:");
-        int num1 = scan.nextInt();
-        System.out.println("Введите второе целове число:");
-        int num2 = scan.nextInt();
-        System.out.println("Введите третье целове число:");
-        int num3 = scan.nextInt();
-        int[] arrMinNum = {num1, num2, num3};
-        // решила использовать массив для удобства и меньшего количества строк, чем с множеством условий
-        System.out.println("Минимальное число: " + (int) Arrays.stream(arrMinNum).min().orElse(0));
-        System.out.println();
-
-        // Задача 3
-        int n = 5;
-        System.out.println("Таблица умножения на " + n + ":");
-        for (int i = 1; i <= 10; i++) {
-            int res = n * i;
-            System.out.println(n + " * " + i + " = " + res);
-        }
-        System.out.println();
-
-        // Задача 4
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        int sum = 0;
-        for (int i = 1; i <= n; i++) {
-            sum += i;
-        }
-        System.out.println("Сумма: " + sum);
-        System.out.println();
-
-        // Задача 5
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        System.out.println("Первые " + n + " чисел Фибоначчи:");
-        for (int i = 0; i < n; i++) {
-            System.out.println(fibonacci(i));
-        }
-        System.out.println();
-
-        // Задача 6
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        if (isNumPrime(n)) System.out.println("Введённое число является простым");
-        else System.out.println("Введённое число не является простым");
-        System.out.println();
-
-        // Задача 7
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        System.out.println("Числа от " + n + " до 1:");
-        for (int i = n; i >= 1; i--)
-        {
-            System.out.println(i);
-        }
-        System.out.println();
-
-        // Задача 8
-        System.out.println("Введите два целых числа:");
-        int a = scan.nextInt();
-        int b = scan.nextInt();
-        sum = 0;
-        for (int i = Math.min(a, b); i <= Math.max(a, b); i++)
-        {
-            if (i % 2 == 0) sum += i;
-        }
-        System.out.println("Сумма чётных чисел в диапозоне равна " + sum);
-        System.out.println();
-
-        // Задача 9
-        System.out.println("Введите строку:");
-        String s = scan.nextLine();
-        StringBuilder reversed = new StringBuilder();
-        for (int i = s.length()-1; i >= 0; i--)
-        {
-            reversed.append(s.charAt(i));
-        }
-        System.out.println("Строка в обратном порядке: " + reversed);
-        System.out.println();
-
-        // Задача 10
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        System.out.printf("В числе %d цифр", String.valueOf(n).length());
-        System.out.println();
-
-        // Задача 11
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        System.out.printf("Факториал числа равен %d", factorial(n));
-        System.out.println();
-
-        // Задача 12
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        sum = 0;
-        while (n / 10 > 9) {
-            sum += n % 10;
-            n /= 10;
-        }
-        System.out.printf("Сумма цифр числа равна %d", sum);
-        System.out.println();
-
-        // Задача 13
-        System.out.println("Введите строку:");
-        s = scan.nextLine();
-        reversed = new StringBuilder();
-        for (int i = s.length()-1; i >= 0; i--)
-        {
-            reversed.append(s.charAt(i));
-        }
-        if (s.contentEquals(reversed))
-            System.out.println("Строка является полиндромом");
-        else System.out.println("Строка не является полиндромом");
-        System.out.println();
-
-        // Задача 14
-        System.out.println("Введите размер массива:");
-        n = scan.nextInt();
-        int[] arr = new int[n];
-        System.out.println("Введите элементы массива:");
-        for (int i = 0; i < n; i++)
-            arr[i] = scan.nextInt();
-        System.out.printf("Максимальное число в массиве: " + Arrays.stream(arr).max());
-        System.out.println();
-
-        // Задача 15
-        System.out.println("Введите размер массива:");
-        n = scan.nextInt();
-        arr = new int[n];
-        sum = 0;
-        System.out.println("Введите элементы массива:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = scan.nextInt();
-            sum += arr[i];
-        }
-        System.out.printf("Сумма элементов массива: " + sum);
-        System.out.println();
-
-        // Задача 16
-        System.out.println("Введите размер массива:");
-        n = scan.nextInt();
-        arr = new int[n];
-        int sumPos = 0, sumNeg = 0;
-        System.out.println("Введите элементы массива:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = scan.nextInt();
-            if (arr[i] > 0) sumPos++;
-            else if (arr[i] < 0) sumNeg++;
-        }
-        System.out.printf("Положительных элементов массива: %d\nОтрицательных элементов массива: %d", sumPos, sumNeg);
-        System.out.println();
-
-        // Задача 17
-        System.out.println("Введите два целых числа:");
-        a = scan.nextInt();
-        b = scan.nextInt();
-        System.out.println("Простые числа в диапозоне");
-        for (int i = Math.min(a, b); i <= Math.max(a, b); i++)
-        {
-            if (isNumPrime(i)) System.out.println(i);
-        }
-        System.out.println();
-
-        // Задача 18
-        System.out.println("Введите строку:");
-        s = scan.nextLine();
-        int vowCount = 0, consCount = 0;
-        String vowels = "уеыаоэяиюёУЕЫАОЭЯИЮЁ";
-        String consonants = "йцкнгшщзхфвпрлджчсмтьбъЙЦКНГШЩЗХЪФВПРЛДЖЧМСТЬБ";
-        for (int i = 0; i < s.length(); i++)
-        {
-            if (vowels.contains(String.valueOf(s.charAt(i)))) vowCount++;
-            else if (consonants.contains(String.valueOf(s.charAt(i)))) consCount++;
-        }
-        System.out.printf("Количество гласных: {0}\nКоличество согласных: {1}", vowCount, consCount);
-        System.out.println();
-
-        // Задача 19
-        System.out.println("Введите строку:");
-        s = scan.nextLine();
-        String newS = "";
-        String[] strArr = s.split(" ");
-        for (int i = strArr.length - 1; i >= 0; i--)
-        {
-            newS.concat(strArr[i] + " ");
-        }
-        System.out.println("Строка в обратном порядке: " + newS);
-        System.out.println();
-
-        // Задача 20
-        System.out.println("Введите целое число:");
-        n = scan.nextInt();
-        sum = 0;
-        while (n / 10 > 9) {
-            sum += n % 10;
-            n /= 10;
-        }
-        if (Math.pow(sum, String.valueOf(n).length()) == n)
-            System.out.println("Число является числом Армстронга");
-        else System.out.println("Число не является числом Армстронга");
+    public static void main(String[] args) throws Exception {
+        System.out.println(maxNum(5, 4));
+        zeroInArr(new int[]{1,2,3});
+        System.out.println(partOfStr("12345", 6));
     }
 
-    private static int fibonacci(int n)
+    // задача 1
+    private static int maxNum(int a, int b) throws Exception
     {
-        if (n <= 1) return n;
-        else return fibonacci(n-1)+fibonacci(n-2);
+        if (a > b)
+            return a;
+        else if (b > a)
+            return b;
+        throw new Exception("Ошибка. Числа равны.");
     }
 
-    private static boolean isNumPrime(int n)
+    // задача 2
+    private static float division(int a, int b) throws ArithmeticException
     {
-        if (n <= 1) return true;
-
-        else
-        {
-            for (int i = 2; i <= Math.sqrt(n); i++)
-            {
-                if (n % i == 0) {
-                    return false;
-                }
-            }
-            return true;
-        }
+        if (b != 0)
+            return a/b;
+        throw new ArithmeticException("Делитель равен 0");
     }
 
-    private static int factorial(int n) {
-        if (n == 0 || n == 1) {
+    // задача 3
+    private static int strToNum(String s)
+    {
+        return Integer.parseInt(s);
+    }
+
+    // задача 4
+    private static void age(int a) throws IllegalArgumentException
+    {
+        if (a < 0 || a > 150)
+            throw new IllegalArgumentException("Введённый возраст выходит за возможные границы!");
+    }
+
+    // задача 5
+    private static float sqrt(float a) throws IllegalArgumentException
+    {
+        if (a < 0)
+            throw new IllegalArgumentException("Введено отрицательное число");
+        return (float)Math.sqrt(a);
+    }
+
+    // задача 6
+    private static int factorial (int a) throws Exception
+    {
+        if (a < 0)
+            throw new Exception("Введено отрицательное число");
+        else if (a == 0 || a == 1)
             return 1;
+        return a * factorial(a - 1);
+    }
+
+    // задача 7
+    private static void zeroInArr (int[] arr) throws Exception
+    {
+        if (Arrays.stream(arr).sorted().toArray()[0] == 0)
+            throw new Exception("Массив сдержит нули");
+        System.out.println("В массиве нет нулей");
+    }
+
+    //задача 8
+    private static int paw(int a, int b) throws Exception
+    {
+        if (b < 0)
+            throw new Exception("Введена отрицательная степень");
+        return (int)Math.pow(a, b);
+    }
+
+    //задача 9
+    private static String partOfStr (String s, int a) throws Exception
+    {
+        if (a > s.length())
+            throw new Exception("В строке нет введённого количества символов");
+        return s.substring(0, a);
+    }
+
+    //задача 10
+    private static int elemInArr (int[] arr, int a) throws Exception {
+        for (int i = 0; i <= arr.length; i++)
+        {
+            if (arr[i] == a) return i;
         }
-        return n * factorial(n - 1);
+        
+        throw new Exception("Массив не содержит введённого элемента");
+    }
+
+    //задача 11
+    public static int findElement(int[] arr, int element) throws Exception {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == element) {
+                return i;
+            }
+        }
+        throw new Exception("Элемент не найден в массиве");
+    }
+
+    // задача 12
+    public static boolean isDivisible(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Нельзя делить на ноль");
+        }
+        return a % b == 0;
+    }
+
+    // задача 13
+    public static <T> T getElementByIndex(List<T> list, int index) {
+        if (index < 0 || index >= list.size()) {
+            throw new IndexOutOfBoundsException("Индекс " + index + " выходит за пределы списка");
+        }
+        return list.get(index);
+    }
+
+    // задача 14
+    public static void validatePassword(String password) throws WeakPasswordException {
+        if (password.length() < 8) {
+            throw new WeakPasswordException("Пароль должен содержать не менее 8 символов");
+        }
+    }
+
+    public static class WeakPasswordException extends Exception {
+        public WeakPasswordException(String message) {
+            super(message);
+        }
+    }
+
+    // задача 16
+    public static String concStrings(String str1, String str2) {
+        if (str1 == null || str2 == null) {
+            throw new NullPointerException("Одна или две строки равны null");
+        }
+        return str1 + str2;
+    }
+
+    // задача 17
+    public static int remainderOfDiv(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Нельзя делить на ноль");
+        }
+        return a % b;
+    }
+
+    // задача 18
+    public static double sqrt(double a) {
+        if (a < 0) {
+            throw new IllegalArgumentException("Нельзя найти корень отрицательного числа");
+        }
+        return Math.sqrt(a);
+    }
+
+    // задача 19
+    public static double celsToFaren(double a) {
+        if (a < -273.15) {
+            throw new IllegalArgumentException("Температура не может быть меньше абсолютного нуля");
+        }
+        return (a * 9.0 / 5.0) + 32.0;
+    }
+
+    //задача 20
+    public static String validString(String s) {
+        if (s == null || s.trim().isEmpty()) {
+            throw new IllegalArgumentException("Строка не может быть пустой или равной null");
+        }
+        return s;
     }
 }
+
